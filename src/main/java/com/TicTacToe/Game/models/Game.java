@@ -59,7 +59,7 @@ public class Game {
         nextPlayerIndex += 1;
         nextPlayerIndex %= playerList.size();
 
-        if(checkWinner(move))
+        if(checkWinner(actualMove))
         {
             setGameState(GameState.COMPLETED);
             setWinner(currentPlayer);
