@@ -35,6 +35,5 @@ public class Client {
             System.out.println("Something Went wrong "+ e.getMessage());
         }
 
-        System.out.println("Game has been created");
     }
 }
