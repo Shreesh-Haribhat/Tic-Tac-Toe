@@ -72,6 +72,27 @@ public class Game {
         }
     }
 
+    public void undo(){
+            if(moves.size() == 0)
+            {
+                return;
+            }
+            Move lastMove = moves.get(moves.size()-1);
+            moves.remove(moves.size()-1);
+
+            for(WinningStrategy ws : winningStrategyList){
+                ws.undo(board, lastMove);
+            }
+
+            Cell cell = lastMove.getCell();
+            cell.setPlayer(null);
+            cell.setCellState(CellState.EMPTY);
+
+            nextPlayerIndex -= 1;
+            nextPlayerIndex = (nextPlayerIndex + playerList.size())%playerList.size();
+
+    }
+
     public boolean checkWinner(Move move)
     {
         for(WinningStrategy winningStrategy : winningStrategyList)

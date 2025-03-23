@@ -19,11 +19,14 @@ public class GameController {
         game.makeMove();
     }
 
-    public void undo(){
+    public void undo(Game game){
+        game.undo();
 
     }
 
-    public void checkState(){
+    public String checkState(Game game){
+
+        return game.getGameState().name();
 
     }
 

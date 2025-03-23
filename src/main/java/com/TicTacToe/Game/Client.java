@@ -9,10 +9,12 @@ import com.TicTacToe.Game.stratergy.WinningStrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args){
         GameController gameController = new GameController();
+        Scanner scn = new Scanner(System.in);
 
         try {
             int dimension = 3;
@@ -28,9 +30,21 @@ public class Client {
 
             while(game.getGameState().equals(GameState.IN_PROGRESS)){
                     gameController.displayBoard(game);
+
+                    System.out.println("Do u want to undo the game (y/n): ");
+                    String ans = scn.next();
+                    if(ans.equalsIgnoreCase("y")){
+                        gameController.undo(game);
+                    }
+
                     gameController.makeMove(game);
             }
-            System.out.println(game.getWinner().getName() + " Won the game0");
+
+            if(gameController.checkState(game).equals(GameState.DRAW)){
+                System.out.println("Game has been drawn");
+            }
+
+            System.out.println(game.getWinner().getName() + " Won the game");
         }catch (Exception e){
             System.out.println("Something Went wrong "+ e.getMessage());
         }

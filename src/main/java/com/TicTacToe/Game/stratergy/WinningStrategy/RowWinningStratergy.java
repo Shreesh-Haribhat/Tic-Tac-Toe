@@ -32,4 +32,13 @@ public class RowWinningStratergy implements WinningStrategy{
         }
         return false;
     }
+
+    @Override
+    public void undo(Board board, Move lastMove) {
+        int row = lastMove.getCell().getCol();
+        Symbol symbol = lastMove.getPlayer().getSymbol();
+        Map<Symbol,Integer> singleRowMap = rowMap.get(row);
+
+        singleRowMap.put(symbol,singleRowMap.get(symbol) - 1);
+    }
 }

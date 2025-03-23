@@ -27,4 +27,13 @@ public class ColWinningStratergy implements WinningStrategy{
         singleColMap.put(symbol,singleColMap.get(symbol) + 1);
         return singleColMap.get(symbol).equals(board.getSize());
     }
+
+    @Override
+    public void undo(Board board, Move lastMove) {
+        int col = lastMove.getCell().getCol();
+        Symbol symbol = lastMove.getPlayer().getSymbol();
+        Map<Symbol,Integer> singleColMap = colMap.get(col);
+
+        singleColMap.put(symbol,singleColMap.get(symbol) - 1);
+    }
 }
